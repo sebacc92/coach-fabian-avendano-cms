@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "workouts",
+  "info": {
+    "singularName": "workout",
+    "pluralName": "workouts",
+    "displayName": "Workout"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Descripcion": {
+      "type": "richtext"
+    },
+    "Duracion_Minutos": {
+      "type": "integer"
+    },
+    "RoutineBlock": {
+      "type": "component",
+      "component": "routine.exercise-set",
+      "repeatable": true
+    },
+    "Warmup": {
+      "type": "richtext"
+    },
+    "program": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::program.program",
+      "inversedBy": "workouts"
+    }
+  }
+}

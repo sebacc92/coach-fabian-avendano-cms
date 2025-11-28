@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "programs",
+  "info": {
+    "singularName": "program",
+    "pluralName": "programs",
+    "displayName": "Program"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid"
+    },
+    "Descripcion": {
+      "type": "richtext"
+    },
+    "Precio": {
+      "type": "decimal"
+    },
+    "Nivel": {
+      "type": "enumeration",
+      "enum": [
+        "Principiante",
+        "Intermedio",
+        "Advanzado"
+      ]
+    },
+    "Cover": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "esta_activo": {
+      "type": "boolean"
+    },
+    "workouts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::workout.workout",
+      "mappedBy": "program"
+    },
+    "purchases": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::purchase.purchase",
+      "mappedBy": "program"
+    }
+  }
+}

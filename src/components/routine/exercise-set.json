@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_routine_exercise_sets",
+  "info": {
+    "displayName": "ExerciseSet",
+    "icon": "emotionHappy"
+  },
+  "options": {},
+  "attributes": {
+    "exercise": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exercise.exercise"
+    },
+    "Sets": {
+      "type": "integer"
+    },
+    "Reps": {
+      "type": "string"
+    },
+    "Rest": {
+      "type": "string"
+    },
+    "TechniqueNote": {
+      "type": "text"
+    },
+    "Tiempo": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
