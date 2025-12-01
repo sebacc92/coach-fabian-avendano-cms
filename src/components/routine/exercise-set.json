@@ -6,7 +6,7 @@
   },
   "options": {},
   "attributes": {
-    "exercise": {
+    "Ejercicio": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::exercise.exercise"
@@ -17,7 +17,7 @@
     "Reps": {
       "type": "string"
     },
-    "Rest": {
+    "Descanso": {
       "type": "string"
     },
     "TechniqueNote": {
@@ -25,6 +25,16 @@
     },
     "Tiempo": {
       "type": "string"
+    },
+    "ejercicio_opcional": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exercise.exercise"
+    },
+    "ejercicio_opcional_2": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::exercise.exercise"
     }
   },
   "config": {}

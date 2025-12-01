@@ -41,10 +41,12 @@
     "Equipamiento": {
       "type": "enumeration",
       "enum": [
-        "Dumbbell",
-        "Barbell",
-        "Machine",
-        "Bodyweight"
+        "Mancuerna",
+        "Barra",
+        "Maquina",
+        "Peso corporal",
+        "Banda",
+        "Pelota"
       ]
     },
     "Instruccion": {

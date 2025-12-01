@@ -445,7 +445,7 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Equipamiento: Schema.Attribute.Enumeration<
-      ['Dumbbell', 'Barbell', 'Machine', 'Bodyweight']
+      ['Mancuerna', 'Barra', 'Maquina', 'Peso corporal', 'Banda', 'Pelota']
     >;
     Grupo_Muscular: Schema.Attribute.Enumeration<
       ['Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Core']
@@ -484,6 +484,7 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Descripcion: Schema.Attribute.RichText;
     esta_activo: Schema.Attribute.Boolean;
+    linkMercadoPago: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -493,10 +494,11 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
     Nivel: Schema.Attribute.Enumeration<
       ['Principiante', 'Intermedio', 'Advanzado']
     >;
+    order: Schema.Attribute.Integer;
     Precio: Schema.Attribute.Decimal;
     publishedAt: Schema.Attribute.DateTime;
     purchases: Schema.Attribute.Relation<'oneToMany', 'api::purchase.purchase'>;
-    Slug: Schema.Attribute.UID;
+    Slug: Schema.Attribute.UID & Schema.Attribute.Required;
     Titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -578,6 +580,42 @@ export interface ApiSubscriptionSubscription
   };
 }
 
+export interface ApiTestimonioTestimonio extends Struct.CollectionTypeSchema {
+  collectionName: 'testimonios';
+  info: {
+    displayName: 'Testimonio';
+    pluralName: 'testimonios';
+    singularName: 'testimonio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    foto_antes: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    foto_despues: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::testimonio.testimonio'
+    > &
+      Schema.Attribute.Private;
+    mensaje: Schema.Attribute.Text;
+    nombre_completo: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiWorkoutWorkout extends Struct.CollectionTypeSchema {
   collectionName: 'workouts';
   info: {
@@ -592,6 +630,7 @@ export interface ApiWorkoutWorkout extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    Descanso_entre_ejercicios: Schema.Attribute.String;
     Descripcion: Schema.Attribute.RichText;
     Duracion_Minutos: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -600,13 +639,15 @@ export interface ApiWorkoutWorkout extends Struct.CollectionTypeSchema {
       'api::workout.workout'
     > &
       Schema.Attribute.Private;
+    orden: Schema.Attribute.Integer & Schema.Attribute.Required;
     program: Schema.Attribute.Relation<'manyToOne', 'api::program.program'>;
     publishedAt: Schema.Attribute.DateTime;
-    RoutineBlock: Schema.Attribute.Component<'routine.exercise-set', true>;
+    Rutina: Schema.Attribute.Component<'routine.exercise-set', true>;
     Titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    VideoURL: Schema.Attribute.String;
     Warmup: Schema.Attribute.RichText;
   };
 }
@@ -1125,6 +1166,7 @@ declare module '@strapi/strapi' {
       'api::program.program': ApiProgramProgram;
       'api::purchase.purchase': ApiPurchasePurchase;
       'api::subscription.subscription': ApiSubscriptionSubscription;
+      'api::testimonio.testimonio': ApiTestimonioTestimonio;
       'api::workout.workout': ApiWorkoutWorkout;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

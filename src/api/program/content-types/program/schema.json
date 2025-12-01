@@ -15,7 +15,8 @@
       "type": "string"
     },
     "Slug": {
-      "type": "uid"
+      "type": "uid",
+      "required": true
     },
     "Descripcion": {
       "type": "richtext"
@@ -55,6 +56,12 @@
       "relation": "oneToMany",
       "target": "api::purchase.purchase",
       "mappedBy": "program"
+    },
+    "order": {
+      "type": "integer"
+    },
+    "linkMercadoPago": {
+      "type": "string"
     }
   }
 }

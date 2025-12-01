@@ -20,7 +20,7 @@
     "Duracion_Minutos": {
       "type": "integer"
     },
-    "RoutineBlock": {
+    "Rutina": {
       "type": "component",
       "component": "routine.exercise-set",
       "repeatable": true
@@ -28,11 +28,21 @@
     "Warmup": {
       "type": "richtext"
     },
+    "Descanso_entre_ejercicios": {
+      "type": "string"
+    },
     "program": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::program.program",
       "inversedBy": "workouts"
+    },
+    "orden": {
+      "type": "integer",
+      "required": true
+    },
+    "VideoURL": {
+      "type": "string"
     }
   }
 }
