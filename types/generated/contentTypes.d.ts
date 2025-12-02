@@ -445,7 +445,15 @@ export interface ApiExerciseExercise extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     Equipamiento: Schema.Attribute.Enumeration<
-      ['Mancuerna', 'Barra', 'Maquina', 'Peso corporal', 'Banda', 'Pelota']
+      [
+        'Mancuerna',
+        'Barra',
+        'Maquina',
+        'Peso corporal',
+        'Banda',
+        'Pelota',
+        'Box',
+      ]
     >;
     Grupo_Muscular: Schema.Attribute.Enumeration<
       ['Chest', 'Back', 'Legs', 'Shoulders', 'Arms', 'Core']
@@ -1120,17 +1128,23 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    is_trial: Schema.Attribute.Boolean;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'plugin::users-permissions.user'
     > &
       Schema.Attribute.Private;
+    mercadopago_id: Schema.Attribute.String;
     password: Schema.Attribute.Password &
       Schema.Attribute.Private &
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    plan_expiration: Schema.Attribute.DateTime;
+    plan_type: Schema.Attribute.Enumeration<
+      ['gratis', 'mensual', 'anual', 'trial', 'pago_unico']
+    >;
     provider: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     purchases: Schema.Attribute.Relation<'oneToMany', 'api::purchase.purchase'>;

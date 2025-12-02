@@ -71,6 +71,25 @@
       "relation": "oneToMany",
       "target": "api::purchase.purchase",
       "mappedBy": "user"
+    },
+    "is_trial": {
+      "type": "boolean"
+    },
+    "plan_expiration": {
+      "type": "datetime"
+    },
+    "plan_type": {
+      "type": "enumeration",
+      "enum": [
+        "gratis",
+        "mensual",
+        "anual",
+        "trial",
+        "pago_unico"
+      ]
+    },
+    "mercadopago_id": {
+      "type": "string"
     }
   }
 }

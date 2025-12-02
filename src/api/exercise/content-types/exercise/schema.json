@@ -46,7 +46,8 @@
         "Maquina",
         "Peso corporal",
         "Banda",
-        "Pelota"
+        "Pelota",
+        "Box"
       ]
     },
     "Instruccion": {
