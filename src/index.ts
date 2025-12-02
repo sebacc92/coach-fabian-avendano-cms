@@ -1,20 +1,32 @@
-// import type { Core } from '@strapi/strapi';
-
+// src/index.ts
 export default {
-  /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
-   */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register({ strapi }) {
+    // Obtener el plugin
+    const plugin = strapi.plugin('users-permissions');
 
-  /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
-   */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+    // Modificar el controller
+    const originalRegister = plugin.controllers.auth.register;
+
+    plugin.controllers.auth.register = async (ctx) => {
+      const { body } = ctx.request;
+
+      const expirationDate = new Date();
+      expirationDate.setDate(expirationDate.getDate() + 7);
+
+      ctx.request.body = {
+        ...body,
+        is_trial: true,
+        plan_type: 'gratis',
+        plan_expiration: expirationDate.toISOString(),
+        confirmed: true
+      };
+
+      return await originalRegister(ctx);
+    };
+  },
+
+  bootstrap({ strapi }) {
+    // Se ejecuta DESPUÉS de que todo esté cargado
+    // Útil para lógica de inicialización
+  },
 };

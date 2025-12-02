@@ -13,5 +13,12 @@ export default ({ env }) => ({
                 delete: {},
             },
         },
-    }
+    },
+    "users-permissions": {
+        config: {
+            register: {
+                allowedFields: ["is_trial", "plan_type", "plan_expiration", "confirmed"],
+            },
+        },
+    },
 });

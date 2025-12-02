@@ -492,6 +492,7 @@ export interface ApiProgramProgram extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     Descripcion: Schema.Attribute.RichText;
     esta_activo: Schema.Attribute.Boolean;
+    free_trial: Schema.Attribute.Integer;
     linkMercadoPago: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<

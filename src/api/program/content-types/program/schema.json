@@ -62,6 +62,9 @@
     },
     "linkMercadoPago": {
       "type": "string"
+    },
+    "free_trial": {
+      "type": "integer"
     }
   }
 }
